@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Main } from './components/main/Main';
 import { Booking } from './components/booking/Booking';
 import { Layout } from './components/layout/Layout';
+import { Admin } from './components/admin/Admin';
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container as Element);
@@ -18,6 +19,7 @@ root.render(
         <Route path='/' element={<Layout/>}>
           <Route index element={<Main/>}/>
           <Route path='/booking' element={<Booking/>}/>
+          <Route path='/admin' element={<Admin/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
