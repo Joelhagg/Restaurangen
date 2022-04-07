@@ -3,9 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Layout } from './components/layout/layout';
+import { Main } from './components/main/Main';
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Layout/>}>
+          <Route index element={<Main/>}/>
+          
+        </Route>
+      </Routes>
+    </BrowserRouter>
     <App />
   </React.StrictMode>,
   document.getElementById('root')
