@@ -2,6 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+
+# Packs to install
+
+$ npm install sass
+
+
+
 Restauratnt-id 624edd698da20f7ae72e1559
 
 ## Available Scripts
