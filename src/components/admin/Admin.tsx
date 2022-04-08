@@ -1,7 +1,8 @@
 import React from 'react';
+import './Admin.scss';
 
 export function Admin () {
     return(<>
-       <h1>Admin workds!</h1> 
+       <h1 className='adminHeader'>Admin workds!</h1> 
     </>)
 }

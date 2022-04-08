@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Booking.scss';
 import { Reservation } from '../../models/Reservation';
 import { BookingService } from '../../services/BookingService';
 
