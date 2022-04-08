@@ -1,25 +1,38 @@
 import React from 'react';
 import { Reservation } from '../../models/Reservation';
+import { BookingService } from '../../services/BookingService';
 
 //let newReservation: Reservation = new Reservation()
 
 const newcustomer = () => {
     
-    let customer: Reservation = new Reservation( 
+    // let customer: Reservation = new Reservation( 
         
-        "string",
-        "", 
-        4, 
-            {
-                name: "string",
-                lastname: 'lastname',
-                email: 'email',
-                phone:'number'
-            }
-    )
+    //     "2022-04-09",
+    //     "18:00", 
+    //     4, 
+    //         {
+    //             name: "majojo",
+    //             lastname: 'test',
+    //             email: 'email@mail.com',
+    //             phone:'070123456'
+    //         }
+    // )
 
-    console.log(customer);
     
+    let service = new BookingService
+    service.createBooking({
+    restaurantId: "624edd698da20f7ae72e1559",
+        date: "20220101",
+        time: "18:00",
+        numberOfGuests: 4,
+        customer: {
+          name: "Franzén",
+          lastname: "Sebastian",
+          email: "someone@somedomain.com",
+          phone: "070-1112233"
+        }
+      })
 
     
 }
