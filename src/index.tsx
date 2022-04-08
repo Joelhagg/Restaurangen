@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Main } from './components/main/Main';
 import { Booking } from './components/booking/Booking';
-import { Layout } from './components/layout/Layout';
 import { Admin } from './components/admin/Admin';
+import { Structure } from './components/structure/Structure';
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container as Element);
@@ -16,14 +15,15 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout/>}>
+        <Route path='/' element={<Structure/>}>
           <Route index element={<Main/>}/>
           <Route path='/booking' element={<Booking/>}/>
           <Route path='/admin' element={<Admin/>}/>
         </Route>
+       
       </Routes>
     </BrowserRouter>
-    <App />
+   
   </React.StrictMode>,
   
 );

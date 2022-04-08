@@ -1,6 +1,4 @@
 import axios from "axios"
-import { createInferTypeNode } from "typescript";
-import { IResturant } from "../../models/IResturant";
 
 export function Main () {
 
