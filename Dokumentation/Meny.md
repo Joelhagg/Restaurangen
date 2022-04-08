@@ -8,4 +8,4 @@ Vi ska servera Enkel men exklusiv typ "grillmat"!
 
 3. Hemmagjorda hamburgare på vildsvin, serveras med nybakat potatisbrioche, picklad vildrödlök och kökets senap och ketchup
 
-4.
+4. Svampsoppa av färska kantareller, serveras i kåsa
