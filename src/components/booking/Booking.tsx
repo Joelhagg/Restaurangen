@@ -23,12 +23,17 @@ const newcustomer = () => {
     service.createBooking(customer)
 }
 
+
 const fetchBookings = () => {
   console.log('fetchBookings');
   service.fetchBookings();
 }
 
 export function Booking () {
+
+
+    const [selects, setSelects] = useState("");
+    console.log("Antal personer" + selects)
     return(<>
         <div className='headerContainer'>
             <h1>Booking works!</h1>
@@ -45,7 +50,7 @@ export function Booking () {
                 
                 <label> Antal gäster: 
                     <br />
-                    <select>
+                    <select value={selects} onChange={e => setSelects(e.target.value)}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
