@@ -30,9 +30,46 @@ const fetchBookings = () => {
 
 export function Booking () {
     return(<>
-        <h1>Booking works!</h1>
+        <div className='headerContainer'>
+            <h1>Booking works!</h1>
 
-        <button onClick={newcustomer}>Ny kund</button>
-        <button onClick={fetchBookings}>Hämta data</button>
+            <button onClick={newcustomer}>Ny kund</button>
+            <button onClick={fetchBookings}>Hämta data</button>
+            
+        </div>
+
+        <div className='bookingSearchContainer'>
+            <h2>Sök önskad bokning</h2>
+
+            <form>
+                
+                <label> Antal gäster: 
+                    <br />
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                    </select>
+                </label>
+
+                <br />
+                <br />
+
+                <label>
+                    Önskat datutm:
+                    <br />
+                    <input type="date" />
+                </label>
+
+                <br />
+                <br />
+                
+                <input type="submit" />
+
+            </form>
+        </div>
         </>)
 }
