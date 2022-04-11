@@ -13,8 +13,18 @@ export function Admin () {
         .then(fetchedBookings => setBookings(fetchedBookings));
         console.log(bookings)
     }, ([]));
+/*
+    let bookingsHtml = bookings.map((b) => {
+        return <li key={}>
+        <span>{b.customer}: </span>
+        <span>{b.date}</span>
+      </li>
+    }
+    )
+*/
 
     return(<>
        <h1 className='adminHeader'>Admin works!</h1> 
+       <ul> </ul>
     </>)
 }
