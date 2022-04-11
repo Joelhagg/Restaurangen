@@ -32,8 +32,9 @@ const fetchBookings = () => {
 export function Booking () {
 
 
-    const [selects, setSelects] = useState("");
-    console.log("Antal personer" + selects)
+    const [selects, setSelects] = useState(0); // Sätter antal personer
+    const [requestedDate, setRequestedDate] = useState("");
+    console.log("Datum: " + requestedDate + " " + "Antal personer: " + selects);
     return(<>
         <div className='headerContainer'>
             <h1>Booking works!</h1>
@@ -50,7 +51,7 @@ export function Booking () {
                 
                 <label> Antal gäster: 
                     <br />
-                    <select value={selects} onChange={e => setSelects(e.target.value)}>
+                    <select value={selects} onChange={e => setSelects(parseInt(e.target.value))}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -66,7 +67,7 @@ export function Booking () {
                 <label>
                     Önskat datutm:
                     <br />
-                    <input type="date" />
+                    <input type="date" onChange={e => setRequestedDate(e.target.value)} />
                 </label>
 
                 <br />
