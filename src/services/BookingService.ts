@@ -1,5 +1,6 @@
 import { Reservation } from "../models/Reservation";
 import axios from "axios"
+import { IReservation } from "../models/IReservation";
 
 export class BookingService {
 
@@ -16,12 +17,13 @@ export class BookingService {
 
     // Den här metoden hämtar bokningar från API:t
 
-    async fetchBookings() {
-        let fetchedResponse = await axios.get<Reservation[]>('https://school-restaurant-api.azurewebsites.net/booking/restaurant/624edd698da20f7ae72e1559'
-           
+    async fetchBookings(): Promise<IReservation[]> {
+        let fetchedResponse = await axios.get<IReservation[]>('https://school-restaurant-api.azurewebsites.net/booking/restaurant/624edd698da20f7ae72e1559'
+         
         );
-        
-        console.log('fetchedResponse.data', fetchedResponse.data);        
+        let bookingArray: IReservation[] = fetchedResponse.data 
+        console.log(bookingArray)
+        return bookingArray;
     }
 }
 
