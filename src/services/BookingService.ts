@@ -16,11 +16,12 @@ export class BookingService {
 
     // Den här metoden hämtar bokningar från API:t
 
-    async fetchBookings() {
+    async fetchBookings(): Promise<Reservation[]> {
         let fetchedResponse = await axios.get<Reservation[]>('https://school-restaurant-api.azurewebsites.net/booking/restaurant/624edd698da20f7ae72e1559'
-           
+         
         );
-        
+        let bookingArray: Reservation[] = fetchedResponse.data 
+        return bookingArray;
         console.log('fetchedResponse.data', fetchedResponse.data);        
     }
 }

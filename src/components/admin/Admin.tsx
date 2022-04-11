@@ -1,8 +1,20 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { Reservation } from '../../models/Reservation';
+import { BookingService } from '../../services/BookingService';
 import './Admin.scss';
 
 export function Admin () {
+    
+    const [bookings, setBookings] = useState<Reservation[]>([]);
+
+    useEffect(() => {
+        let service = new BookingService;
+        service.fetchBookings()
+        .then(fetchedBookings => setBookings(fetchedBookings));
+        console.log(bookings)
+    }, ([]));
+
     return(<>
-       <h1 className='adminHeader'>Admin workds!</h1> 
+       <h1 className='adminHeader'>Admin works!</h1> 
     </>)
 }
