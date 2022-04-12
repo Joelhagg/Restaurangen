@@ -3,7 +3,6 @@ import "./Booking.scss";
 import { Reservation } from "../../models/Reservation";
 import { BookingService } from "../../services/BookingService";
 import { IReservation } from "../../models/IReservation";
-import axios from "axios";
 
 let service = new BookingService();
 const newcustomer = () => {
@@ -16,8 +15,6 @@ const newcustomer = () => {
   service.createBooking(customer);
 };
 
-
-
 export function Booking() {
 
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
@@ -25,35 +22,55 @@ export function Booking() {
   const [bookings, setBookings] = useState<IReservation[]>([]); // Hämta hem befintliga bokningar
   const [selects, setSelects] = useState(0); // Sätter antal personer
   const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
+  const [availableSeats, setAvailableSeats] = useState(0);
 
   useEffect(() => {
     service.fetchBookings().then((response) => setBookings(response));
+
   }, []);
 
   function checkIfAvailable(e: any) {
     e.preventDefault();
 
-    
-
-    let foundBooking = bookings.filter((match) => {
+    let dateMatch = bookings.filter((match) => { // Hämtar bokningar och filtrerar på valt datum      
       return match.date === requestedDate;
-      //matches.push(match);
-
-    
+      
     });
-    setBookingDates(foundBooking);
-/*  
-    if (foundBooking !== undefined) {
-      setBookingDates([...bookingDates, foundBooking]);
+
+    let timeMatch = dateMatch.filter((match) => {
+        return match.time == "21:00" 
+    })
+
+    if(bookingDates.length >= 15) {
+      
     }
-*/
-   
+    
+    setBookingDates(timeMatch);
+    console.log(bookingDates)
 
+    let seats = 0;
+    for (let i=0; i<bookingDates.length; i++) {
+        seats = seats + bookingDates[i].numberOfGuests
+    }
+    //console.log(seats)
+    setAvailableSeats(seats);
+    console.log("taken seats: " + availableSeats)
+
+
+    if (selects <= 6) {
+        // bord = 1
+        //setAvailableSeats(-6)
+        console.log('mindre än 6');
+        
+    } else if (selects >=7 && selects <= 10 ) {
+        // bord = 2
+        //setAvailableSeats(-12)
+        console.log('mer än 6');
+    }
   }
+
   
-
-
-
+  
   return (
     <>
       <div className="headerContainer">
@@ -80,6 +97,10 @@ export function Booking() {
               <option>4</option>
               <option>5</option>
               <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
             </select>
           </label>
 
@@ -97,27 +118,20 @@ export function Booking() {
 
           <br />
           <br />
-
+          <label></label>
+  
           <input type="submit" />
         </form>
         {bookingDates.map(booking => 
-            <h1 key={booking._id}>{booking.time}</h1>)
-            
-            }
-        <div>
+            <h1 key={booking._id}>{booking.time}</h1>)}
 
+            <br />
+
+            {/* {bookingDates.length >= 15 ? <p></p> : <label><input type="radio" />kl 18</label> }
+            {bookingDates.length >= 15 ? <p></p> : <label><input type="radio" />kl 21</label> } */}
+          <div>
         </div>
       </div>
     </>
   );
 }
-
-
-/*
-const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
-
-const result = words.filter(word => word.length > 6);
-
-console.log(result);
-// expected output: Array ["exuberant", "destruction", "present"]
-*/
