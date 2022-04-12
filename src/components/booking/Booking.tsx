@@ -7,7 +7,7 @@ import axios from "axios";
 
 let service = new BookingService();
 const newcustomer = () => {
-  let customer: Reservation = new Reservation("2022-04-09", "18:00", 4, {
+  let customer: Reservation = new Reservation("2022-04-09", "21:00", 4, {
     name: "majojo",
     lastname: "test",
     email: "email@mail.com",
@@ -16,15 +16,9 @@ const newcustomer = () => {
   service.createBooking(customer);
 };
 
-const fetchBookings = () => {
-  console.log("fetchBookings");
-  service.fetchBookings();
-};
+
 
 export function Booking() {
-  useEffect(() => {
-    service.fetchBookings().then((response) => setBookings(response));
-  }, []);
 
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
   const [bookingDates, setBookingDates] = useState<IReservation[]>([]);
@@ -32,31 +26,33 @@ export function Booking() {
   const [selects, setSelects] = useState(0); // Sätter antal personer
   const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
 
+  useEffect(() => {
+    service.fetchBookings().then((response) => setBookings(response));
+  }, []);
+
   function checkIfAvailable(e: any) {
     e.preventDefault();
 
-    let foundBooking = bookings.find((match) => {
-      return match.date === requestedDate;
-    });
+    
 
+    let foundBooking = bookings.filter((match) => {
+      return match.date === requestedDate;
+      //matches.push(match);
+
+    
+    });
+    setBookingDates(foundBooking);
+/*  
     if (foundBooking !== undefined) {
       setBookingDates([...bookingDates, foundBooking]);
     }
+*/
+   
 
-    console.log(bookings);
-
-    //   console.log(requestedDate);
-    //   console.log(bookings[4].date);
   }
+  
 
-  console.log(bookingDates);
 
-  //service.fetchBookings()
-  //service.fetchAvailableBookings(requestedDate, selects);
-  // .then(data => setBookings(data) )
-  // .then(match => bookings.find(match => match.date === requestedDate))
-
-  //let match = bookings.find(match => match.date === requestedDate)
 
   return (
     <>
@@ -64,7 +60,6 @@ export function Booking() {
         <h1>Booking works!</h1>
 
         <button onClick={newcustomer}>Ny kund</button>
-        <button onClick={fetchBookings}>Hämta data</button>
       </div>
 
       <div className="bookingSearchContainer">
@@ -105,19 +100,24 @@ export function Booking() {
 
           <input type="submit" />
         </form>
+        {bookingDates.map(booking => 
+            <h1 key={booking._id}>{booking.time}</h1>)
+            
+            }
+        <div>
+
+        </div>
       </div>
     </>
   );
 }
 
-// .get<IMovie[]>(
-//     "http://medieinstitutet-wie-products.azurewebsites.net/api/products"
-//   )
-//   .then((response) => {
-//     let moviesFromApi = response.data.map((movie: IMovie) => {
-//       return new Movie(movie.id, movie.name, movie.imageUrl);
-//     });
 
-//     setMovies(moviesFromApi);
-//   });
-// });
+/*
+const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+
+const result = words.filter(word => word.length > 6);
+
+console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
+*/
