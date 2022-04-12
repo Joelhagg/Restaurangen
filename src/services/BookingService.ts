@@ -22,13 +22,40 @@ export class BookingService {
          
         );
         let bookingArray: IReservation[] = fetchedResponse.data 
-        console.log(bookingArray)
+       
         return bookingArray;
     }
-}
+
+    // async fetchAvailableBookings(requestedDate: string, numberOfGuests: number){
+    //     let fetchedResponse = await axios.get<IReservation[]>('https://school-restaurant-api.azurewebsites.net/booking/restaurant/624edd698da20f7ae72e1559'
+
+    //     );
+    //     let bookingArray: IReservation[] = fetchedResponse.data 
+    //     console.log(bookingArray);
+        
+    //     let match = bookingArray.find((bookingData: IReservation) => {
+    //             if(bookingData.date === requestedDate) {
+    //                 console.log('date match', requestedDate);
+                    
+    //             } else {
+    //                 console.log('no date' );
+    //             }
+    //         })
+
+    //         console.log(match);
+            
+            
+    //         return match;
+    //     }
+        // console.log('date' ,date);
+        // console.log('numberOfGuests', numberOfGuests);
+        
+    }
 
 
 
+
+    
 
 /* När man klickar på boka ska detta ske:
 
