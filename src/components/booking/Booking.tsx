@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import './Booking.scss';
 import { Reservation } from '../../models/Reservation';
 import { BookingService } from '../../services/BookingService';
+import { IReservation } from '../../models/IReservation';
 
-//let newReservation: Reservation = new Reservation()
-// const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
-
-let service = new BookingService
+let service = new BookingService 
 const newcustomer = () => {
     
     let customer: Reservation = new Reservation( 
@@ -23,12 +21,28 @@ const newcustomer = () => {
     service.createBooking(customer)
 }
 
+
 const fetchBookings = () => {
   console.log('fetchBookings');
   service.fetchBookings();
 }
 
 export function Booking () {
+    const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
+    const [bookingDates, setBookingDates] = useState<IReservation[]>([]);
+    const [bookings, setBookings] = useState<IReservation[]>([]);
+    const [selects, setSelects] = useState(0); // Sätter antal personer
+    const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
+    console.log("Datum: " + requestedDate + " " + "Antal personer: " + selects);
+
+    function checkIfAvailable() {
+       // service.fetchBookings().then(data => setBookings(data) )
+       // let match = bookings.find(match => match.date===requestedDate)
+        //setBookingDates()
+        
+        console.log("Hej hej")
+    };
+
     return(<>
         <div className='headerContainer'>
             <h1>Booking works!</h1>
@@ -41,11 +55,11 @@ export function Booking () {
         <div className='bookingSearchContainer'>
             <h2>Sök önskad bokning</h2>
 
-            <form>
+            <form onSubmit={checkIfAvailable}>
                 
                 <label> Antal gäster: 
                     <br />
-                    <select>
+                    <select value={selects} onChange={e => setSelects(parseInt(e.target.value))}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -59,15 +73,15 @@ export function Booking () {
                 <br />
 
                 <label>
-                    Önskat datutm:
+                    Önskat datum:
                     <br />
-                    <input type="date" />
+                    <input type="date" onChange={e => setRequestedDate(e.target.value)} />
                 </label>
 
                 <br />
                 <br />
                 
-                <input type="submit" />
+                <input type="submit"/>
 
             </form>
         </div>
