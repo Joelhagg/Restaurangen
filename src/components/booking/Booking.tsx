@@ -18,6 +18,7 @@ const newcustomer = () => {
 
 const fetchBookings = () => {
   console.log("fetchBookings");
+  
   service.fetchBookings();
 };
 
@@ -49,8 +50,6 @@ export function Booking() {
     //   console.log(bookings[4].date);
   }
 
-  console.log(bookingDates);
-
   //service.fetchBookings()
   //service.fetchAvailableBookings(requestedDate, selects);
   // .then(data => setBookings(data) )
@@ -75,17 +74,8 @@ export function Booking() {
             {" "}
             Antal gäster:
             <br />
-            <select
-              value={selects}
-              onChange={(e) => setSelects(parseInt(e.target.value))}
-            >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-            </select>
+            <input type="number" onChange={(e) => setSelects(parseInt(e.target.value))} />
+            
           </label>
 
           <br />
