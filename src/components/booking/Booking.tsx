@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import "./Booking.scss";
 import { Reservation } from "../../models/Reservation";
 import { BookingService } from "../../services/BookingService";
@@ -32,7 +32,7 @@ export function Booking() {
   const [selects, setSelects] = useState(0); // Sätter antal personer
   const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
 
-  function checkIfAvailable(e: any) {
+  function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     let foundBooking = bookings.find((match) => {
