@@ -86,7 +86,8 @@ export function Booking() {
             {" "}
             Antal gäster:
             <br />
-
+            <input type="number" onChange={(e) => setSelects(parseInt(e.target.value))} />
+            
           </label>
 
           <br />
@@ -103,8 +104,7 @@ export function Booking() {
 
           <br />
           <br />
-          <label></label>
-  
+
           <input type="submit" />
         </form>
         {bookingDates.map(booking => 
