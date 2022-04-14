@@ -4,7 +4,11 @@ import './Main.scss';
 export function Main () {
 
     return (<>
-        <h1>Main Works!</h1>
+    <div className='mainWraper'>
+        <div className='mainContainer'>
+            <h1>Main Works!</h1>
+        </div>
+    </div>
 
     </>)
 }

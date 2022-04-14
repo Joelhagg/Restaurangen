@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import "./Booking.scss";
 import { Reservation } from "../../models/Reservation";
 import { BookingService } from "../../services/BookingService";
@@ -15,6 +15,7 @@ const newcustomer = () => {
   service.createBooking(customer);
 };
 
+
 export function Booking() {
 
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
@@ -29,7 +30,7 @@ export function Booking() {
 
   }, []);
 
-  function checkIfAvailable(e: any) {
+  function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     let dateMatch = bookings.filter((match) => { // Hämtar bokningar och filtrerar på valt datum      
@@ -68,8 +69,7 @@ export function Booking() {
     }
   }
 
-  
-  
+
   return (
     <>
       <div className="headerContainer">
@@ -86,21 +86,7 @@ export function Booking() {
             {" "}
             Antal gäster:
             <br />
-            <select
-              value={selects}
-              onChange={(e) => setSelects(parseInt(e.target.value))}
-            >
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option>8</option>
-              <option>9</option>
-              <option>10</option>
-            </select>
+
           </label>
 
           <br />
