@@ -41,8 +41,7 @@ export function Booking() {
         return match.time == "21:00" 
     })
 
-    if(bookingDates.length >= 15) {
-      
+    if(bookingDates.length >= 15) { 
     }
     
     setBookingDates(timeMatch);
