@@ -3,6 +3,7 @@ import "./Booking.scss";
 import { Reservation } from "../../models/Reservation";
 import { BookingService } from "../../services/BookingService";
 import { IReservation } from "../../models/IReservation";
+import { Link } from "react-router-dom";
 
 export function Booking() {
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
@@ -15,6 +16,7 @@ export function Booking() {
   const [nightDates, setNightDates] = useState<IReservation[]>([]);
   const [requestedTime, setRequestedTime] = useState("");
   const [showTime, setShowTime] = useState(false);
+  const [bookingComplete, setBookingComplete] = useState(false);
   const [newCustomer, setNewCustomer] = useState({
     
     name: "",
@@ -27,23 +29,16 @@ export function Booking() {
 
   useEffect(() => {
     service.fetchBookings().then((response) => setBookings(response));
+    setBookingComplete(false);
   }, []);
 
   useEffect(() => {
-    console.log(requestedDate)
-    if ((selects !<= 1 && selects !<= 6) || requestedDate === "") {
+    
+    if (requestedDate === "") {
     setShowTime(false);   
     } else {
-
-      if (selects == NaN) {
-        setShowTime(false)
-      }
-
     setShowTime(true)}
-
-    console.log('selects inside useEffects', selects);
     
-      
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -85,6 +80,10 @@ export function Booking() {
       }
     );
     service.createBooking(customer);
+
+    setShowTime(false);
+    setBookingComplete(true);
+
   };
 
   function changeSelects(e: ChangeEvent<HTMLSelectElement>) {
@@ -93,15 +92,31 @@ export function Booking() {
     
   }
 
-   
-       
+  function showBookingInformation() {
+    return(
+      <>
+        
+      </>
+    )
+  }
+  
   return (
     <>
-      <div className="headerContainer">
-        <h1>Booking works!</h1>
-      </div>
+      {bookingComplete && <div>
 
-      <div className="bookingSearchContainer">
+        <h1>Tack {newCustomer.name} för din bokning!</h1>
+        <h3>Du är välkommen till oss den {requestedDate} klockan {requestedTime}. Antal gäster: {selects}</h3>
+
+        
+
+       <Link to="/"> <button>Tillbaka till startsidan</button></Link>
+
+        </div>}
+
+      {!bookingComplete && <div>
+
+        
+        <div className="bookingSearchContainer">
         <h2>Sök önskad bokning</h2>
 
         <form>
@@ -109,23 +124,14 @@ export function Booking() {
             {" "}
             Antal gäster:
             <br />
-            <input
-              type="number"
-              min="1"
-              max="6"
-              onChange={(e) => setSelects(parseInt(e.target.value))}
-
-              
-            />
             <select onChange={(e) => changeSelects(e)}>
-              <option value={1} >1</option>
+              <option value={1}>1</option>
               <option value={2}>2</option>
               <option value={3}>3</option>
               <option value={4}>4</option>
               <option value={5}>5</option>
               <option value={6}>6</option>
             </select>
-
           </label>
 
           <br />
@@ -142,34 +148,32 @@ export function Booking() {
 
           <br />
           <br /> 
-
-          
         </form>
-        {bookingDates.map((booking) => (
-          <h1 key={booking._id}>{booking.time}</h1>
-        ))}
 
-        <br />
-          <p>Den {requestedDate} finns dessa lediga bord för {selects} personer: </p>
-        {/* vi wrapar och visar när man klickat på knappen - tex en boolean som blir true */}
-        {showTime &&
-        <section>  
-        {eveningDates.length >= 15 ? (
-          <p>kl 18:00 - Fullbokat</p>
-        ) : (
-          <label>
-            <input type="radio" onChange={() => setRequestedTime("18:00")} />
-            kl 18
-          </label>
-        )}
-        {nightDates.length >= 15 ? (
-          <p>kl 21:00 - Fullbokat</p>
-        ) : (
-          <label>
-            <input type="radio" onChange={() => setRequestedTime("21:00")} />
-            kl 21
-          </label>
-        )}
+          <br />
+            
+          
+          {showTime &&
+          <section>
+            <p>Den {requestedDate} finns dessa lediga bord för {selects} personer: </p>
+          <form>
+              {eveningDates.length >= 15 ? (
+                <p>kl 18:00 - Fullbokat</p>
+              ) : (
+                <label>
+                  <input type="radio" id="18" value={requestedTime} name="18" onChange={() => setRequestedTime("18:00")} />
+                  kl 18
+                </label>
+              )}
+              {nightDates.length >= 15 ? (
+                <p>kl 21:00 - Fullbokat</p>
+              ) : (
+                <label>
+                  <input type="radio" id="21" value={requestedTime} name="21" onChange={() => setRequestedTime("21:00")} />
+                  kl 21
+                </label>
+              )}
+          </form>
         <br />
         <br />
         <div>
@@ -208,15 +212,29 @@ export function Booking() {
               value={booking?.customer.phone}
               onChange={handleChange}
             ></input>
+
             <br />
             <br />
+            <br />
+
+            <label> Godkänner du att vi hanterar din persondata enligt GDPR?
+            <input type="checkbox" />
+            </label>
+
+            <br />
+            <br />
+
            { <input type="submit" /> }
           </form>
          
         </div>
-        </section>
-}
+        </section>}
+        
       </div>
+        
+        </div>}
+
+     
     </>
   );
 }

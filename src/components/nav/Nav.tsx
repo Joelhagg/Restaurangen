@@ -18,9 +18,6 @@ export function Nav() {
                         <Link to="/booking">Booking</Link>
                     </li>
                     <li>
-                        <Link to="/admin">Admin</Link>
-                    </li>
-                    <li>
                         <Link to="/contact">Contact</Link>
                     </li>
 

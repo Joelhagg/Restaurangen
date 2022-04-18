@@ -1,6 +1,7 @@
 import { Reservation } from "../models/Reservation";
 import axios from "axios"
 import { IReservation } from "../models/IReservation";
+import { ICustomer } from "../models/ICustomer";
 
 export class BookingService {
 
@@ -25,6 +26,17 @@ export class BookingService {
        
         return bookingArray;
     }
+
+    customerList: ICustomer[] = [];
+    async fetchCustomer(customerId: any): Promise<ICustomer> {
+        let fetchedResponse = await axios.get<ICustomer>(`https://school-restaurant-api.azurewebsites.net/customer/${customerId}`);
+        
+        let fetchedCustomer: ICustomer = fetchedResponse.data;
+        //this.customerList.push(fetchedCustomer)
+       
+        return fetchedCustomer
+    }
+
 
     // async fetchAvailableBookings(requestedDate: string, numberOfGuests: number){
     //     let fetchedResponse = await axios.get<IReservation[]>('https://school-restaurant-api.azurewebsites.net/booking/restaurant/624edd698da20f7ae72e1559'
