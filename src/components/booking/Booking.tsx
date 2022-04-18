@@ -29,11 +29,10 @@ export function Booking() {
     service.fetchBookings().then((response) => setBookings(response));
   }, []);
 
-  function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setShowTime(true);
-
+  useEffect(() => {
     
+    setShowTime(true);   
+
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -49,8 +48,34 @@ export function Booking() {
 
     setNightDates(nightMatch);
     setEveningsDates(eveningMatch);
+    
+  }, [selects, requestedDate])
 
-  }
+  // function checkIfAvailable(peopleEvent: ChangeEvent<HTMLInputElement>, dateEvent: ChangeEvent<HTMLInputElement>) {
+  //   //e.preventDefault();
+  //   setShowTime(true);   
+
+  //   setSelects(parseInt(peopleEvent.target.value))
+
+  //   let dateMatch = bookings.filter((match) => {
+  //     // Hämtar bokningar och filtrerar på valt datum
+  //     return match.date === requestedDate;
+  //   });
+
+  //   let nightMatch = dateMatch.filter((match) => {
+  //     return match.time === "21:00";
+  //   });
+
+  //   let eveningMatch = dateMatch.filter((match) => {
+  //     return match.time === "18:00";
+  //   });
+
+  //   setNightDates(nightMatch);
+  //   setEveningsDates(eveningMatch);
+
+  // }
+
+
   //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
@@ -90,7 +115,7 @@ export function Booking() {
       <div className="bookingSearchContainer">
         <h2>Sök önskad bokning</h2>
 
-        <form onSubmit={checkIfAvailable}>
+        <form>
           <label>
             {" "}
             Antal gäster:
@@ -116,14 +141,14 @@ export function Booking() {
           <br />
           <br /> 
 
-          <input type="submit" value="Sök bokning"/>
+          
         </form>
         {bookingDates.map((booking) => (
           <h1 key={booking._id}>{booking.time}</h1>
         ))}
 
         <br />
-
+          <p>Den {requestedDate} finns dessa lediga bord för {selects} personer: </p>
         {/* vi wrapar och visar när man klickat på knappen - tex en boolean som blir true */}
         {showTime &&
         <section>  
@@ -169,7 +194,7 @@ export function Booking() {
               value={booking?.customer.phone}
               onChange={handleChange}
             ></input>
-            <input type="submit" />
+           { <input type="submit" /> }
           </form>
          
         </div>
@@ -179,3 +204,4 @@ export function Booking() {
     </>
   );
 }
+
