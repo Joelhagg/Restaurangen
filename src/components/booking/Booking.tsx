@@ -100,6 +100,7 @@ export function Booking() {
   };
 
    
+       
   return (
     <>
       <div className="headerContainer">
@@ -144,7 +145,8 @@ export function Booking() {
         <br />
 
         {/* vi wrapar och visar när man klickat på knappen - tex en boolean som blir true */}
-
+        {showTime &&
+        <section>  
         {eveningDates.length >= 15 ? (
           <p>kl 18:00 - Fullbokat</p>
         ) : (
@@ -189,7 +191,10 @@ export function Booking() {
             ></input>
             <input type="submit" />
           </form>
+          {showTime && <p>Gör din bokning</p>}
         </div>
+        </section>
+}
       </div>
     </>
   );
