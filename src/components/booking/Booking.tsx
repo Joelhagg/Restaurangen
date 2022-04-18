@@ -32,6 +32,8 @@ export function Booking() {
   function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setShowTime(true);
+
+    
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -48,28 +50,6 @@ export function Booking() {
     setNightDates(nightMatch);
     setEveningsDates(eveningMatch);
 
-    if (bookingDates.length >= 15) {
-    }
-
-    console.log(bookingDates);
-
-    let seats = 0;
-    for (let i = 0; i < bookingDates.length; i++) {
-      seats = seats + bookingDates[i].numberOfGuests;
-    }
-    //console.log(seats)
-    setAvailableSeats(seats);
-    console.log("taken seats: " + availableSeats);
-
-    if (selects <= 6) {
-      // bord = 1
-      //setAvailableSeats(-6)
-      console.log("mindre än 6");
-    } else if (selects >= 7 && selects <= 10) {
-      // bord = 2
-      //setAvailableSeats(-12)
-      console.log("mer än 6");
-    }
   }
   //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -134,9 +114,9 @@ export function Booking() {
           </label>
 
           <br />
-          <br />
+          <br /> 
 
-          <input type="submit" />
+          <input type="submit" value="Sök bokning"/>
         </form>
         {bookingDates.map((booking) => (
           <h1 key={booking._id}>{booking.time}</h1>
@@ -191,7 +171,7 @@ export function Booking() {
             ></input>
             <input type="submit" />
           </form>
-          {showTime && <p>Gör din bokning</p>}
+         
         </div>
         </section>
 }
