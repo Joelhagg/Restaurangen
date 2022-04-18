@@ -14,7 +14,9 @@ export function Booking() {
   const [eveningDates, setEveningsDates] = useState<IReservation[]>([]);
   const [nightDates, setNightDates] = useState<IReservation[]>([]);
   const [requestedTime, setRequestedTime] = useState("");
+  const [showTime, setShowTime] = useState(false);
   const [newCustomer, setNewCustomer] = useState({
+    
     name: "",
     lastName: "",
     email: "",
@@ -29,7 +31,7 @@ export function Booking() {
 
   function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
+    setShowTime(true);
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -97,12 +99,11 @@ export function Booking() {
     service.createBooking(customer);
   };
 
+   
   return (
     <>
       <div className="headerContainer">
         <h1>Booking works!</h1>
-
-        {/* <button onClick={newCustomer}>Ny kund</button> */}
       </div>
 
       <div className="bookingSearchContainer">
@@ -142,7 +143,7 @@ export function Booking() {
 
         <br />
 
-        {/* vi wrapar och visar när man klickat på knappen - tex enn boolean som blir true */}
+        {/* vi wrapar och visar när man klickat på knappen - tex en boolean som blir true */}
 
         {eveningDates.length >= 15 ? (
           <p>kl 18:00 - Fullbokat</p>
