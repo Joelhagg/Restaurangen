@@ -3,18 +3,22 @@ import "./Booking.scss";
 import { Reservation } from "../../models/Reservation";
 import { BookingService } from "../../services/BookingService";
 import { IReservation } from "../../models/IReservation";
+import { Link } from "react-router-dom";
 
 export function Booking() {
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
   const [bookingDates, setBookingDates] = useState<IReservation[]>([]);
   const [bookings, setBookings] = useState<IReservation[]>([]); // Hämta hem befintliga bokningar
-  const [selects, setSelects] = useState(0); // Sätter antal personer
+  const [selects, setSelects] = useState(1); // Sätter antal personer
   const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
   const [availableSeats, setAvailableSeats] = useState(0);
   const [eveningDates, setEveningsDates] = useState<IReservation[]>([]);
   const [nightDates, setNightDates] = useState<IReservation[]>([]);
   const [requestedTime, setRequestedTime] = useState("");
+  const [showTime, setShowTime] = useState(false);
+  const [bookingComplete, setBookingComplete] = useState(false);
   const [newCustomer, setNewCustomer] = useState({
+    
     name: "",
     lastName: "",
     email: "",
@@ -25,11 +29,16 @@ export function Booking() {
 
   useEffect(() => {
     service.fetchBookings().then((response) => setBookings(response));
+    setBookingComplete(false);
   }, []);
 
-  function checkIfAvailable(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
+  useEffect(() => {
+    
+    if (requestedDate === "") {
+    setShowTime(false);   
+    } else {
+    setShowTime(true)}
+    
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -45,40 +54,16 @@ export function Booking() {
 
     setNightDates(nightMatch);
     setEveningsDates(eveningMatch);
+  
+  }, [selects, requestedDate])
 
-    if (bookingDates.length >= 15) {
-    }
-
-    console.log(bookingDates);
-
-    let seats = 0;
-    for (let i = 0; i < bookingDates.length; i++) {
-      seats = seats + bookingDates[i].numberOfGuests;
-    }
-    //console.log(seats)
-    setAvailableSeats(seats);
-    console.log("taken seats: " + availableSeats);
-
-    if (selects <= 6) {
-      // bord = 1
-      //setAvailableSeats(-6)
-      console.log("mindre än 6");
-    } else if (selects >= 7 && selects <= 10) {
-      // bord = 2
-      //setAvailableSeats(-12)
-      console.log("mer än 6");
-    }
-  }
+ 
   //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
     setNewCustomer({ ...newCustomer, [customer]: e.target.value });
   }
 
-  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     let name: string = e.target.name;
-  //     setNewUser({ ...newUser, [name]: e.target.value });
-  //   };
 
   const newBooking = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -95,28 +80,58 @@ export function Booking() {
       }
     );
     service.createBooking(customer);
+
+    setShowTime(false);
+    setBookingComplete(true);
+
   };
 
+  function changeSelects(e: ChangeEvent<HTMLSelectElement>) {
+    setSelects(parseInt(e.target.value))
+    console.log('selects', selects);
+    
+  }
+
+  function showBookingInformation() {
+    return(
+      <>
+        
+      </>
+    )
+  }
+  
   return (
     <>
-      <div className="headerContainer">
-        <h1>Booking works!</h1>
+      {bookingComplete && <div>
 
-        {/* <button onClick={newCustomer}>Ny kund</button> */}
-      </div>
+        <h1>Tack {newCustomer.name} för din bokning!</h1>
+        <h3>Du är välkommen till oss den {requestedDate} klockan {requestedTime}. Antal gäster: {selects}</h3>
 
-      <div className="bookingSearchContainer">
+        
+
+       <Link to="/"> <button>Tillbaka till startsidan</button></Link>
+
+        </div>}
+
+      {!bookingComplete && <div>
+
+        
+        <div className="bookingSearchContainer">
         <h2>Sök önskad bokning</h2>
 
-        <form onSubmit={checkIfAvailable}>
+        <form>
           <label>
             {" "}
             Antal gäster:
             <br />
-            <input
-              type="number"
-              onChange={(e) => setSelects(parseInt(e.target.value))}
-            />
+            <select onChange={(e) => changeSelects(e)}>
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+            </select>
           </label>
 
           <br />
@@ -132,64 +147,95 @@ export function Booking() {
           </label>
 
           <br />
-          <br />
-
-          <input type="submit" />
+          <br /> 
         </form>
-        {bookingDates.map((booking) => (
-          <h1 key={booking._id}>{booking.time}</h1>
-        ))}
 
+          <br />
+            
+          
+          {showTime &&
+          <section>
+            <p>Den {requestedDate} finns dessa lediga bord för {selects} personer: </p>
+          <form>
+              {eveningDates.length >= 15 ? (
+                <p>kl 18:00 - Fullbokat</p>
+              ) : (
+                <label>
+                  <input type="radio" id="18" value={requestedTime} name="18" onChange={() => setRequestedTime("18:00")} />
+                  kl 18
+                </label>
+              )}
+              {nightDates.length >= 15 ? (
+                <p>kl 21:00 - Fullbokat</p>
+              ) : (
+                <label>
+                  <input type="radio" id="21" value={requestedTime} name="21" onChange={() => setRequestedTime("21:00")} />
+                  kl 21
+                </label>
+              )}
+          </form>
         <br />
-
-        {/* vi wrapar och visar när man klickat på knappen - tex enn boolean som blir true */}
-
-        {eveningDates.length >= 15 ? (
-          <p>kl 18:00 - Fullbokat</p>
-        ) : (
-          <label>
-            <input type="radio" onChange={() => setRequestedTime("18:00")} />
-            kl 18
-          </label>
-        )}
-        {nightDates.length >= 15 ? (
-          <p>kl 21:00 - Fullbokat</p>
-        ) : (
-          <label>
-            <input type="radio" onChange={() => setRequestedTime("21:00")} />
-            kl 21
-          </label>
-        )}
+        <br />
         <div>
           <form onSubmit={newBooking}>
             <input
               type="text"
               name="name"
+              placeholder="namn"
               value={booking?.customer.name}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="text"
               name="lastname"
+              placeholder="efternamn"
               value={booking?.customer.lastname}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="email"
               name="email"
+              placeholder="Mejl"
               value={booking?.customer.email}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="text"
               name="phone"
+              placeholder="Mobil"
               value={booking?.customer.phone}
               onChange={handleChange}
             ></input>
-            <input type="submit" />
+
+            <br />
+            <br />
+            <br />
+
+            <label> Godkänner du att vi hanterar din persondata enligt GDPR?
+            <input type="checkbox" />
+            </label>
+
+            <br />
+            <br />
+
+           { <input type="submit" /> }
           </form>
+         
         </div>
+        </section>}
+        
       </div>
+        
+        </div>}
+
+     
     </>
   );
 }
+
