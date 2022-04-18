@@ -30,9 +30,17 @@ export function Booking() {
   }, []);
 
   useEffect(() => {
-    
-    setShowTime(true);   
+    console.log(requestedDate)
+    if ((selects !<= 1 && selects !<= 6) || requestedDate === "") {
+    setShowTime(false);   
+    } else {
 
+      if (selects == NaN) {
+        setShowTime(false)
+      }
+
+    setShowTime(true)}
+      
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -48,44 +56,16 @@ export function Booking() {
 
     setNightDates(nightMatch);
     setEveningsDates(eveningMatch);
-    
+  
   }, [selects, requestedDate])
 
-  // function checkIfAvailable(peopleEvent: ChangeEvent<HTMLInputElement>, dateEvent: ChangeEvent<HTMLInputElement>) {
-  //   //e.preventDefault();
-  //   setShowTime(true);   
-
-  //   setSelects(parseInt(peopleEvent.target.value))
-
-  //   let dateMatch = bookings.filter((match) => {
-  //     // Hämtar bokningar och filtrerar på valt datum
-  //     return match.date === requestedDate;
-  //   });
-
-  //   let nightMatch = dateMatch.filter((match) => {
-  //     return match.time === "21:00";
-  //   });
-
-  //   let eveningMatch = dateMatch.filter((match) => {
-  //     return match.time === "18:00";
-  //   });
-
-  //   setNightDates(nightMatch);
-  //   setEveningsDates(eveningMatch);
-
-  // }
-
-
+ 
   //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
     setNewCustomer({ ...newCustomer, [customer]: e.target.value });
   }
 
-  //   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  //     let name: string = e.target.name;
-  //     setNewUser({ ...newUser, [name]: e.target.value });
-  //   };
 
   const newBooking = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -122,6 +102,8 @@ export function Booking() {
             <br />
             <input
               type="number"
+              min="1"
+              max="6"
               onChange={(e) => setSelects(parseInt(e.target.value))}
             />
           </label>
@@ -168,32 +150,46 @@ export function Booking() {
             kl 21
           </label>
         )}
+        <br />
+        <br />
         <div>
           <form onSubmit={newBooking}>
             <input
               type="text"
               name="name"
+              placeholder="namn"
               value={booking?.customer.name}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="text"
               name="lastname"
+              placeholder="efternamn"
               value={booking?.customer.lastname}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="email"
               name="email"
+              placeholder="Mejl"
               value={booking?.customer.email}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
             <input
               type="text"
               name="phone"
+              placeholder="Mobil"
               value={booking?.customer.phone}
               onChange={handleChange}
             ></input>
+            <br />
+            <br />
            { <input type="submit" /> }
           </form>
          
