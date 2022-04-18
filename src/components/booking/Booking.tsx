@@ -8,7 +8,7 @@ export function Booking() {
   const [booking, setBooking] = useState<Reservation>(); // Kolla om vi behöver ange startegenskaper. Kanske undefined.
   const [bookingDates, setBookingDates] = useState<IReservation[]>([]);
   const [bookings, setBookings] = useState<IReservation[]>([]); // Hämta hem befintliga bokningar
-  const [selects, setSelects] = useState(0); // Sätter antal personer
+  const [selects, setSelects] = useState(1); // Sätter antal personer
   const [requestedDate, setRequestedDate] = useState(""); // Sätter valt datum
   const [availableSeats, setAvailableSeats] = useState(0);
   const [eveningDates, setEveningsDates] = useState<IReservation[]>([]);
@@ -40,6 +40,9 @@ export function Booking() {
       }
 
     setShowTime(true)}
+
+    console.log('selects inside useEffects', selects);
+    
       
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
@@ -84,6 +87,12 @@ export function Booking() {
     service.createBooking(customer);
   };
 
+  function changeSelects(e: ChangeEvent<HTMLSelectElement>) {
+    setSelects(parseInt(e.target.value))
+    console.log('selects', selects);
+    
+  }
+
    
        
   return (
@@ -105,7 +114,18 @@ export function Booking() {
               min="1"
               max="6"
               onChange={(e) => setSelects(parseInt(e.target.value))}
+
+              
             />
+            <select onChange={(e) => changeSelects(e)}>
+              <option value={1} >1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+            </select>
+
           </label>
 
           <br />
