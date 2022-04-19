@@ -17,6 +17,9 @@ export function Nav() {
               <Link to="/">Hem</Link>
             </li>
             <li>
+              <Link to="/menu">Meny</Link>
+            </li>
+            <li>
               <Link to="/booking">Booking</Link>
             </li>
             <li>
