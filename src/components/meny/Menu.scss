@@ -1,0 +1,47 @@
+.menuContainer {
+    border: solid red 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(135, 104, 60);
+}
+
+.menuWraper {
+    border: solid black 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.menuOne {
+    border: solid #4C2B28 5px;
+    border-radius: 10px;
+    background-color: #AD8E62;
+    margin: 20px;
+    width: 400px;
+    padding-bottom: 30px;
+}
+
+.menuTwo {
+    border: solid #4C2B28 5px;
+    border-radius: 10px;
+    width: 400px;
+    background-color: #AD8E62;
+    margin: 20px;
+    padding-bottom: 30px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    padding: 5px 30px 5px 30px;
+}
+
+.tdPrice {
+    text-align: right;
+}
+
