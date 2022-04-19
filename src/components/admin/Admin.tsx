@@ -30,15 +30,15 @@ export function Admin() {
   };
 
   const showCustomerInformation = async (customerId: string) => {
-    let customerToShow = await axios.get<ICustomer>(
+    let customerToShow = await axios.get<ICustomer[]>(
       `https://school-restaurant-api.azurewebsites.net/customer/${customerId}`
     );
     console.log(customerToShow.data);
 
-    setCustomerDetails(customerToShow.data);
-
-    console.log(customerDetails);
+    setCustomerDetails(customerToShow.data[0]);
   };
+
+  console.log(customerDetails);
 
   useEffect(() => {
     let service = new BookingService();

@@ -134,6 +134,7 @@ export function Booking() {
                 <input
                   type="date"
                   onChange={(e) => setRequestedDate(e.target.value)}
+                  min={new Date().toISOString()}
                 />
               </label>
 
@@ -158,7 +159,7 @@ export function Booking() {
                         type="radio"
                         id="18"
                         value={requestedTime}
-                        name="18"
+                        name="radio"
                         onChange={() => setRequestedTime("18:00")}
                       />
                       kl 18
@@ -172,7 +173,7 @@ export function Booking() {
                         type="radio"
                         id="21"
                         value={requestedTime}
-                        name="21"
+                        name="radio"
                         onChange={() => setRequestedTime("21:00")}
                       />
                       kl 21
