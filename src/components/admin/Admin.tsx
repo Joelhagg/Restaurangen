@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ICustomer } from "../../models/ICustomer";
 import { IReservation } from "../../models/IReservation";
 import { BookingService } from "../../services/BookingService";
+import { Customer } from "../customer/Customer";
 import "./Admin.scss";
 
 export function Admin() {
@@ -54,9 +55,7 @@ export function Admin() {
         <span>Tid: {b.time}</span>
         <span>Antal gäster: {b.numberOfGuests}</span>
         <button onClick={(e) => deleteBooking(b._id)}>Remove</button>
-        <button onClick={(id) => showCustomerInformation(b.customerId)}>
-          hämta kunddata
-        </button>
+        <Customer customerId={b.customerId} />
       </li>
     );
   });

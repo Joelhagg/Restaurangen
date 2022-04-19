@@ -150,7 +150,7 @@ export function Booking() {
                   Den {requestedDate} finns dessa lediga bord för {selects}{" "}
                   personer:{" "}
                 </p>
-                <form>
+                <form onSubmit={newBooking}>
                   {eveningDates.length >= 15 ? (
                     <p>kl 18:00 - Fullbokat</p>
                   ) : (
@@ -160,6 +160,7 @@ export function Booking() {
                         id="18"
                         value={requestedTime}
                         name="radio"
+                        required
                         onChange={() => setRequestedTime("18:00")}
                       />
                       kl 18
@@ -174,29 +175,33 @@ export function Booking() {
                         id="21"
                         value={requestedTime}
                         name="radio"
+                        required
                         onChange={() => setRequestedTime("21:00")}
                       />
                       kl 21
                     </label>
                   )}
-                </form>
-                <br />
-                <br />
-                <div>
-                  <form onSubmit={newBooking}>
+
+                  <br />
+                  <br />
+                  <div>
                     <input
                       type="text"
                       name="name"
                       placeholder="namn"
+                      required
+                      minLength={2}
                       value={booking?.customer.name}
                       onChange={handleChange}
-                    ></input>
+                    />
                     <br />
                     <br />
                     <input
                       type="text"
                       name="lastname"
                       placeholder="efternamn"
+                      required
+                      minLength={2}
                       value={booking?.customer.lastname}
                       onChange={handleChange}
                     ></input>
@@ -206,6 +211,7 @@ export function Booking() {
                       type="email"
                       name="email"
                       placeholder="Mejl"
+                      required
                       value={booking?.customer.email}
                       onChange={handleChange}
                     ></input>
@@ -215,6 +221,8 @@ export function Booking() {
                       type="text"
                       name="phone"
                       placeholder="Mobil"
+                      minLength={10}
+                      required
                       value={booking?.customer.phone}
                       onChange={handleChange}
                     ></input>
@@ -226,15 +234,15 @@ export function Booking() {
                     <label>
                       {" "}
                       Godkänner du att vi hanterar din persondata enligt GDPR?
-                      <input type="checkbox" />
+                      <input required type="checkbox" />
                     </label>
 
                     <br />
                     <br />
 
                     <button type="submit">Boka!</button>
-                  </form>
-                </div>
+                  </div>
+                </form>
               </section>
             )}
           </div>
