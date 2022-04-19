@@ -5,10 +5,40 @@ header{
 nav {
     border: solid black 1px;
     background-color: rgb(135, 104, 60);
-    // background-image: url(/image/Majojo.jpg);
-    // background-size: 20%;
-    // background-repeat: no-repeat;
-    // background-position: center;
+ 
+.logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30vh;
+        
+        
+
+    }
+
+    span{
+        background-color: black;
+        height: 5px;
+        width: 50px;
+        display: block;
+        margin: 5px;
+        border-radius: 4px;
+        position: relative;
+        right: 0;
+        transition: 0.5s ease;
+        cursor: pointer;
+      }
+      span:hover{
+        right: 6px;
+      }
+      #menu-button {
+        border: none;
+        position: fixed;
+        top: 5px;
+        right: 0px;
+        z-index: 998;
+        background-color: rgba(255, 255, 255, 0);
+         }
 }
 
 }
