@@ -18,9 +18,8 @@ export function Booking() {
   const [showTime, setShowTime] = useState(false);
   const [bookingComplete, setBookingComplete] = useState(false);
   const [newCustomer, setNewCustomer] = useState({
-    
     name: "",
-    lastName: "",
+    lastname: "",
     email: "",
     phone: "",
   });
@@ -33,12 +32,12 @@ export function Booking() {
   }, []);
 
   useEffect(() => {
-    
     if (requestedDate === "") {
-    setShowTime(false);   
+      setShowTime(false);
     } else {
-    setShowTime(true)}
-    
+      setShowTime(true);
+    }
+
     let dateMatch = bookings.filter((match) => {
       // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
@@ -54,16 +53,13 @@ export function Booking() {
 
     setNightDates(nightMatch);
     setEveningsDates(eveningMatch);
-  
-  }, [selects, requestedDate])
+  }, [selects, requestedDate]);
 
- 
   //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
     setNewCustomer({ ...newCustomer, [customer]: e.target.value });
   }
-
 
   const newBooking = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,168 +70,174 @@ export function Booking() {
       selects,
       {
         name: newCustomer.name,
-        lastname: newCustomer.lastName,
+        lastname: newCustomer.lastname,
         email: newCustomer.email,
         phone: newCustomer.phone,
       }
     );
+
     service.createBooking(customer);
 
     setShowTime(false);
     setBookingComplete(true);
-
   };
 
   function changeSelects(e: ChangeEvent<HTMLSelectElement>) {
-    setSelects(parseInt(e.target.value))
-    console.log('selects', selects);
-    
+    setSelects(parseInt(e.target.value));
+    console.log("selects", selects);
   }
 
-  function showBookingInformation() {
-    return(
-      <>
-        
-      </>
-    )
-  }
-  
   return (
     <>
-      {bookingComplete && <div>
-
-        <h1>Tack {newCustomer.name} för din bokning!</h1>
-        <h3>Du är välkommen till oss den {requestedDate} klockan {requestedTime}. Antal gäster: {selects}</h3>
-
-        
-
-       <Link to="/"> <button>Tillbaka till startsidan</button></Link>
-
-        </div>}
-
-      {!bookingComplete && <div>
-
-        
-        <div className="bookingSearchContainer">
-        <h2>Sök önskad bokning</h2>
-
-        <form>
-          <label>
-            {" "}
-            Antal gäster:
-            <br />
-            <select onChange={(e) => changeSelects(e)}>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-            </select>
-          </label>
-
-          <br />
-          <br />
-
-          <label>
-            Önskat datum:
-            <br />
-            <input
-              type="date"
-              onChange={(e) => setRequestedDate(e.target.value)}
-            />
-          </label>
-
-          <br />
-          <br /> 
-        </form>
-
-          <br />
-            
-          
-          {showTime &&
-          <section>
-            <p>Den {requestedDate} finns dessa lediga bord för {selects} personer: </p>
-          <form>
-              {eveningDates.length >= 15 ? (
-                <p>kl 18:00 - Fullbokat</p>
-              ) : (
-                <label>
-                  <input type="radio" id="18" value={requestedTime} name="18" onChange={() => setRequestedTime("18:00")} />
-                  kl 18
-                </label>
-              )}
-              {nightDates.length >= 15 ? (
-                <p>kl 21:00 - Fullbokat</p>
-              ) : (
-                <label>
-                  <input type="radio" id="21" value={requestedTime} name="21" onChange={() => setRequestedTime("21:00")} />
-                  kl 21
-                </label>
-              )}
-          </form>
-        <br />
-        <br />
+      {bookingComplete && (
         <div>
-          <form onSubmit={newBooking}>
-            <input
-              type="text"
-              name="name"
-              placeholder="namn"
-              value={booking?.customer.name}
-              onChange={handleChange}
-            ></input>
-            <br />
-            <br />
-            <input
-              type="text"
-              name="lastname"
-              placeholder="efternamn"
-              value={booking?.customer.lastname}
-              onChange={handleChange}
-            ></input>
-            <br />
-            <br />
-            <input
-              type="email"
-              name="email"
-              placeholder="Mejl"
-              value={booking?.customer.email}
-              onChange={handleChange}
-            ></input>
-            <br />
-            <br />
-            <input
-              type="text"
-              name="phone"
-              placeholder="Mobil"
-              value={booking?.customer.phone}
-              onChange={handleChange}
-            ></input>
+          <h1>Tack {newCustomer.name} för din bokning!</h1>
+          <h3>
+            Du är välkommen till oss den {requestedDate} klockan {requestedTime}
+            . Antal gäster: {selects}
+          </h3>
 
-            <br />
-            <br />
-            <br />
-
-            <label> Godkänner du att vi hanterar din persondata enligt GDPR?
-            <input type="checkbox" />
-            </label>
-
-            <br />
-            <br />
-
-           { <input type="submit" /> }
-          </form>
-         
+          <Link to="/">
+            {" "}
+            <button>Tillbaka till startsidan</button>
+          </Link>
         </div>
-        </section>}
-        
-      </div>
-        
-        </div>}
+      )}
 
-     
+      {!bookingComplete && (
+        <div>
+          <div className="bookingSearchContainer">
+            <h2>Sök önskad bokning</h2>
+
+            <form>
+              <label>
+                {" "}
+                Antal gäster:
+                <br />
+                <select onChange={(e) => changeSelects(e)}>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+                </select>
+              </label>
+
+              <br />
+              <br />
+
+              <label>
+                Önskat datum:
+                <br />
+                <input
+                  type="date"
+                  onChange={(e) => setRequestedDate(e.target.value)}
+                />
+              </label>
+
+              <br />
+              <br />
+            </form>
+
+            <br />
+
+            {showTime && (
+              <section>
+                <p>
+                  Den {requestedDate} finns dessa lediga bord för {selects}{" "}
+                  personer:{" "}
+                </p>
+                <form>
+                  {eveningDates.length >= 15 ? (
+                    <p>kl 18:00 - Fullbokat</p>
+                  ) : (
+                    <label>
+                      <input
+                        type="radio"
+                        id="18"
+                        value={requestedTime}
+                        name="18"
+                        onChange={() => setRequestedTime("18:00")}
+                      />
+                      kl 18
+                    </label>
+                  )}
+                  {nightDates.length >= 15 ? (
+                    <p>kl 21:00 - Fullbokat</p>
+                  ) : (
+                    <label>
+                      <input
+                        type="radio"
+                        id="21"
+                        value={requestedTime}
+                        name="21"
+                        onChange={() => setRequestedTime("21:00")}
+                      />
+                      kl 21
+                    </label>
+                  )}
+                </form>
+                <br />
+                <br />
+                <div>
+                  <form onSubmit={newBooking}>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="namn"
+                      value={booking?.customer.name}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <br />
+                    <input
+                      type="text"
+                      name="lastname"
+                      placeholder="efternamn"
+                      value={booking?.customer.lastname}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <br />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Mejl"
+                      value={booking?.customer.email}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <br />
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Mobil"
+                      value={booking?.customer.phone}
+                      onChange={handleChange}
+                    ></input>
+
+                    <br />
+                    <br />
+                    <br />
+
+                    <label>
+                      {" "}
+                      Godkänner du att vi hanterar din persondata enligt GDPR?
+                      <input type="checkbox" />
+                    </label>
+
+                    <br />
+                    <br />
+
+                    <button type="submit">Boka!</button>
+                  </form>
+                </div>
+              </section>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
-
