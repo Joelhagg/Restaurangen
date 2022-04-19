@@ -84,14 +84,15 @@ export function Booking() {
 
   function changeSelects(e: ChangeEvent<HTMLSelectElement>) {
     setSelects(parseInt(e.target.value));
-    console.log("selects", selects);
   }
 
   return (
     <>
       {bookingComplete && (
         <div>
-          <h1>Tack {newCustomer.name} för din bokning!</h1>
+          <h1>
+            Tack {newCustomer.name} {newCustomer.lastname} för din bokning!
+          </h1>
           <h3>
             Du är välkommen till oss den {requestedDate} klockan {requestedTime}
             . Antal gäster: {selects}
@@ -236,6 +237,11 @@ export function Booking() {
               </section>
             )}
           </div>
+          <br />
+          <h5>
+            Ring om ni önskar boka fler än 6 gäster på telefonnummer:{" "}
+            <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
+          </h5>
         </div>
       )}
     </>
