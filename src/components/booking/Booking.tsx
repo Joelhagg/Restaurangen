@@ -134,7 +134,7 @@ export function Booking() {
                 <input
                   type="date"
                   onChange={(e) => setRequestedDate(e.target.value)}
-                  min={new Date().toISOString()}
+                  min={new Date().toISOString().split("T")[0]}
                 />
               </label>
 
