@@ -7,8 +7,9 @@ export function Nav() {
 
     return (
         <>
+        <header>
             <nav>
-                <h1>MaJoJo</h1>
+            <Link to="/"> <img src="Majojo.jpg" className="logoImage" /></Link>
                 <h3>Nav</h3>
                 <ul>
                     <li>
@@ -23,6 +24,6 @@ export function Nav() {
 
                 </ul>
             </nav>
-
+        </header>
         </>)
 }
