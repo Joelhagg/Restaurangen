@@ -53,6 +53,7 @@ export function Admin() {
 
   return (
     <>
+      <h1 className="adminHeader">Admin - Bokningar</h1>
       <div className="bookingContiner">
         <p>{bookingsHtml}</p>
       </div>

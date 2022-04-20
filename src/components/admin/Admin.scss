@@ -1,9 +1,13 @@
 .adminHeader {
+    text-align: center;
+    font-size: 40px;
+    text-shadow: black 5px 5px 5px;
+    margin: 0;
+    padding: 0;
     color: red;
 }
 
 .bookingContiner {
-    border: solid red 2px;
     display: flex;
     text-align: center;
     justify-content: center;
