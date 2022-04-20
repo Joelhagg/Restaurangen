@@ -12,7 +12,7 @@ export function Nav() {
             {" "}
             <img src={Logo} className="logo" />
           </Link>
-          <h3>Nav</h3>
+
           <ul>
             <li>
               <Link to="/">Hem</Link>

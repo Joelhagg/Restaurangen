@@ -4,7 +4,7 @@
 
 Kolarbyn Eco Lodge - Västerås
 
-59°48'37.2"N 15°40'59.9"E
+59°48'26.5"N 15°43'46.2"E
 
 - Kund / beställaren:
 

@@ -133,6 +133,7 @@ export function Booking() {
                 <br />
                 <input
                   type="date"
+                  className="datePicker"
                   onChange={(e) => setRequestedDate(e.target.value)}
                   min={new Date().toISOString().split("T")[0]}
                 />
@@ -146,10 +147,10 @@ export function Booking() {
 
             {showTime && (
               <section>
-                <p>
+                <h3>
                   Den {requestedDate} finns dessa lediga bord för {selects}{" "}
                   personer:{" "}
-                </p>
+                </h3>
                 <form onSubmit={newBooking}>
                   {eveningDates.length >= 15 ? (
                     <p>kl 18:00 - Fullbokat</p>
@@ -160,6 +161,7 @@ export function Booking() {
                         id="18"
                         value={requestedTime}
                         name="radio"
+                        className="radioBtn"
                         required
                         onChange={() => setRequestedTime("18:00")}
                       />
@@ -188,7 +190,7 @@ export function Booking() {
                     <input
                       type="text"
                       name="name"
-                      placeholder="namn"
+                      placeholder="Namn"
                       required
                       minLength={2}
                       value={booking?.customer.name}
@@ -199,7 +201,7 @@ export function Booking() {
                     <input
                       type="text"
                       name="lastname"
-                      placeholder="efternamn"
+                      placeholder="Efternamn"
                       required
                       minLength={2}
                       value={booking?.customer.lastname}
