@@ -10,7 +10,6 @@ export function Admin() {
   let service = new BookingService();
   const [bookings, setBookings] = useState<IReservation[]>([]);
   const [idToRemove, setIdToRemove] = useState("");
-  const [customerList, setCustomerList] = useState<ICustomer[]>([]);
   const [customerDetails, setCustomerDetails] = useState<ICustomer>({
     _id: "",
     name: "",
@@ -30,17 +29,6 @@ export function Admin() {
       .then((fetchedBookings) => setBookings(fetchedBookings));
   };
 
-  const showCustomerInformation = async (customerId: string) => {
-    let customerToShow = await axios.get<ICustomer[]>(
-      `https://school-restaurant-api.azurewebsites.net/customer/${customerId}`
-    );
-    console.log(customerToShow.data);
-
-    setCustomerDetails(customerToShow.data[0]);
-  };
-
-  console.log(customerDetails);
-
   useEffect(() => {
     let service = new BookingService();
     service
@@ -50,20 +38,24 @@ export function Admin() {
 
   let bookingsHtml = bookings.map((b) => {
     return (
-      <li key={b._id}>
-        <span>Datum: {b.date} </span>
-        <span>Tid: {b.time}</span>
-        <span>Antal gäster: {b.numberOfGuests}</span>
-        <button onClick={(e) => deleteBooking(b._id)}>Remove</button>
+      <div key={b._id} className="bookingCell">
+        <p>Bokningsdatum: {b.date} </p>
+        <p>Tid: {b.time}</p>
+        <p>Antal gäster: {b.numberOfGuests}</p>
         <Customer customerId={b.customerId} />
-      </li>
+        <button onClick={(e) => deleteBooking(b._id)}>Ta bort bokning</button>
+        <br />
+        <br />
+        <hr />
+      </div>
     );
   });
 
   return (
     <>
-      <h1 className="adminHeader">Admin works!</h1>
-      <ul>{bookingsHtml}</ul>
+      <div className="bookingContiner">
+        <p>{bookingsHtml}</p>
+      </div>
     </>
   );
 }
