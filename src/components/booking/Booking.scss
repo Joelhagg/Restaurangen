@@ -13,41 +13,72 @@
 }
 
 select {
-    width: 50px;
-    height: 40px;
-    background-color: rgb(242, 189, 115);
-    color: #5f3834;
+    width: 40px;
+    height: 30px;
+    background-color: rgb(192, 204, 222);
+    border: solid black 1px;
     border-radius: 5px;
-    border: solid #5f3834 2px;
-    font-size: 20px;
+    font-size: 15px;
+    margin: 10px 0px 20px 0px;
 }
 
 .datePicker {
-    background-color: rgb(242, 189, 115);
-    height: 40px;
-    background-color: rgb(242, 189, 115);
-    color: #5f3834;
+    background-color: rgb(192, 204, 222);
+    height: 30px;
     border-radius: 5px;
-    border: solid #5f3834 2px;
+    border: solid black 1px;
     font-size: 20px;
+    margin: 15px 0px 25px 0px;
+}
+
+.radioBtn {
+    height: 18px;
+    width: 18px;
+    background-color: rgb(192, 204, 222);
+}
+
+.formInput {
+    width: 200px;
+    height: 30px;
+    background-color: rgb(192, 204, 222);
+    border: solid black 1px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 15px;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    background-color: rgb(192, 204, 222);
+    border: solid black 1px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 15px;
+}
+
+.submitBtn {
+    width: 70px;
+    height: 30px;
+    background-color: rgb(192, 204, 222);
+    border: solid black 1px;
+    border-radius: 5px;
+    font-size: 15px;
+    margin: 15px;
+}
+
+.infoText {
+    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 4px;
 }
 
 .orderConfirmation {
     text-align: center;
     background-image: url("../../image/bookingskog2.jpg");
-    height: 90vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 
-// .wrapper {
-//     height: 100vh;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     background-color: #eee
-// }
 
 .checkmark__circle {
     stroke-dasharray: 166;
