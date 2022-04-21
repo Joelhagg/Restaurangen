@@ -89,7 +89,7 @@ export function Booking() {
   return (
     <>
       {bookingComplete && (
-        <div>
+        <div className="orderConfirmation">
           <h1>
             Tack {newCustomer.name} {newCustomer.lastname} för din bokning!
           </h1>
@@ -97,6 +97,28 @@ export function Booking() {
             Du är välkommen till oss den {requestedDate} klockan {requestedTime}
             . Antal gäster: {selects}
           </h3>
+
+          <div className="wrapper">
+            {" "}
+            <svg
+              className="checkmark"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 52 52"
+            >
+              <circle
+                className="checkmark__circle"
+                cx="26"
+                cy="26"
+                r="25"
+                fill="none"
+              />
+              <path
+                className="checkmark__check"
+                fill="none"
+                d="M14.1 27.2l7.1 7.2 16.7-16.8"
+              />
+            </svg>
+          </div>
 
           <Link to="/">
             {" "}
