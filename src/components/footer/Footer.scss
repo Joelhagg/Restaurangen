@@ -9,7 +9,10 @@
 }
 
 .footerContainer {
-    
+    bottom: 0px;
+    width: 100vw;
+    height: 50px;
+    position: fixed;
     background-color: rgb(135, 104, 60);
     display: flex;
     justify-content: space-between;

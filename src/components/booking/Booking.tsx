@@ -88,6 +88,7 @@ export function Booking() {
 
   return (
     <>
+    <div className="bookingWrapper">
       {bookingComplete && (
         <div className="orderConfirmation">
           <h1>
@@ -277,6 +278,7 @@ export function Booking() {
           </h5>
         </div>
       )}
+      </div>
     </>
   );
 }
