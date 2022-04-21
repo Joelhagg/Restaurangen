@@ -132,8 +132,8 @@ export function Booking() {
           <div>
             <div className="bookingSearchContainer">
               <h2>Boka din upplevelse nu!</h2>
-              <p>I din bokning ingår middag vid vald tid och övernattning i någon av våra unika kojor! <br /> 
-              Varje koja rymmer upp till 6 personer. För större sällskap hänvisar vi till telefonbokning</p>
+              <p><em>I din bokning ingår middag vid vald tid och övernattning i någon av våra unika kojor! <br /> 
+              Varje koja rymmer upp till 6 personer. För större sällskap hänvisar vi till telefonbokning</em></p>
 
               <form>
                 <label>
