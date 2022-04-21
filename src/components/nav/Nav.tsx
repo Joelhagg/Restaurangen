@@ -4,7 +4,7 @@ import "./Nav.scss";
 import Logo from "../../image/Majojo.jpg";
 import { useState } from "react";
 
-export function Nav()  {
+export function Nav() {
   const [isActive, setActive] = useState(false);
 
   const openBurgerMenu = () => {
@@ -21,37 +21,39 @@ export function Nav()  {
 
   return (
     <>
-    <header>
+      <header>
         <nav>
           <Link to="/">
             {" "}
-            <img src={Logo} className="logo" alt="Logo of Majojo" />
+            {/* <img src={Logo} className="logo" alt="Logo of Majojo" /> */}
           </Link>
-          </nav>
-          
-
-      <nav
-        className={`hamburger ${isActive ? "hamburger-active" : ""}`}
-        onClick={openBurgerMenu}
-      >
-        <span className="hamburger__icon"></span>
-      </nav>
-      <nav className={`header-links-container ${isActive ? "change" : ""}`}>
-        <nav className="header-links">
-        <Link to ="/" onClick={closeMenu} >Hem</Link>
-          <Link to ="/menu" onClick={closeMenu} >Meny</Link>
-          <Link to ="/booking" onClick={closeMenu} >Bokning</Link>
-          <Link to ="/contact" onClick={closeMenu} >Kontakta oss</Link>
-          
         </nav>
-      </nav>
-    </header>
+
+        <nav
+          className={`hamburger ${isActive ? "hamburger-active" : ""}`}
+          onClick={openBurgerMenu}
+        >
+          <span className="hamburger__icon"></span>
+        </nav>
+        <nav className={`header-links-container ${isActive ? "change" : ""}`}>
+          <nav className="header-links">
+            <Link to="/" onClick={closeMenu}>
+              Hem
+            </Link>
+            <Link to="/menu" onClick={closeMenu}>
+              Meny
+            </Link>
+            <Link to="/booking" onClick={closeMenu}>
+              Bokning
+            </Link>
+            <Link to="/contact" onClick={closeMenu}>
+              Kontakta oss
+            </Link>
+          </nav>
+        </nav>
+      </header>
     </>
   );
-};
+}
 
 export default Nav;
-
-
-
- 
