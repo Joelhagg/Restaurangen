@@ -1,5 +1,6 @@
 .bookingWrapper {
     background-image: url("../../image/bookingskog2.jpg");
+    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -8,6 +9,7 @@
 .bookingSearchContainer, .headerContainer {
     text-align: center;
     margin: 40px;
+    height: 80vh;
 }
 
 select {
@@ -32,6 +34,11 @@ select {
 
 .orderConfirmation {
     text-align: center;
+    background-image: url("../../image/bookingskog2.jpg");
+    height: 90vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 // .wrapper {

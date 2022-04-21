@@ -25,7 +25,7 @@ export function Nav() {
         <nav>
           <Link to="/">
             {" "}
-            {/* <img src={Logo} className="logo" alt="Logo of Majojo" /> */}
+            <img src={Logo} className="logo" alt="Logo of Majojo" />
           </Link>
         </nav>
 

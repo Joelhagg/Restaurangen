@@ -88,196 +88,197 @@ export function Booking() {
 
   return (
     <>
-    <div className="bookingWrapper">
-      {bookingComplete && (
-        <div className="orderConfirmation">
-          <h1>
-            Tack {newCustomer.name} {newCustomer.lastname} för din bokning!
-          </h1>
-          <h3>
-            Du är välkommen till oss den {requestedDate} klockan {requestedTime}
-            . Antal gäster: {selects}
-          </h3>
+      <div className="bookingWrapper">
+        {bookingComplete && (
+          <div className="orderConfirmation">
+            <h1>
+              Tack {newCustomer.name} {newCustomer.lastname} för din bokning!
+            </h1>
+            <h3>
+              Du är välkommen till oss den {requestedDate} klockan{" "}
+              {requestedTime}. Antal gäster: {selects}
+            </h3>
 
-          <div className="wrapper">
-            {" "}
-            <svg
-              className="checkmark"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 52 52"
-            >
-              <circle
-                className="checkmark__circle"
-                cx="26"
-                cy="26"
-                r="25"
-                fill="none"
-              />
-              <path
-                className="checkmark__check"
-                fill="none"
-                d="M14.1 27.2l7.1 7.2 16.7-16.8"
-              />
-            </svg>
-          </div>
-
-          <Link to="/">
-            {" "}
-            <button>Tillbaka till startsidan</button>
-          </Link>
-        </div>
-      )}
-
-      {!bookingComplete && (
-        <div>
-          <div className="bookingSearchContainer">
-            <h2>Sök önskad bokning</h2>
-
-            <form>
-              <label>
-                {" "}
-                Antal gäster:
-                <br />
-                <select onChange={(e) => changeSelects(e)}>
-                  <option value={1}>1</option>
-                  <option value={2}>2</option>
-                  <option value={3}>3</option>
-                  <option value={4}>4</option>
-                  <option value={5}>5</option>
-                  <option value={6}>6</option>
-                </select>
-              </label>
-
-              <br />
-              <br />
-
-              <label>
-                Önskat datum:
-                <br />
-                <input
-                  type="date"
-                  className="datePicker"
-                  onChange={(e) => setRequestedDate(e.target.value)}
-                  min={new Date().toISOString().split("T")[0]}
+            <div className="wrapper">
+              {" "}
+              <svg
+                className="checkmark"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 52 52"
+              >
+                <circle
+                  className="checkmark__circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="none"
                 />
-              </label>
+                <path
+                  className="checkmark__check"
+                  fill="none"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                />
+              </svg>
+            </div>
 
-              <br />
-              <br />
-            </form>
-
-            <br />
-
-            {showTime && (
-              <section>
-                <h3>
-                  Den {requestedDate} finns dessa lediga bord för {selects}{" "}
-                  personer:{" "}
-                </h3>
-                <form onSubmit={newBooking}>
-                  {eveningDates.length >= 15 ? (
-                    <p>kl 18:00 - Fullbokat</p>
-                  ) : (
-                    <label>
-                      <input
-                        type="radio"
-                        id="18"
-                        value={requestedTime}
-                        name="radio"
-                        className="radioBtn"
-                        required
-                        onChange={() => setRequestedTime("18:00")}
-                      />
-                      kl 18
-                    </label>
-                  )}
-                  {nightDates.length >= 15 ? (
-                    <p>kl 21:00 - Fullbokat</p>
-                  ) : (
-                    <label>
-                      <input
-                        type="radio"
-                        id="21"
-                        value={requestedTime}
-                        name="radio"
-                        required
-                        onChange={() => setRequestedTime("21:00")}
-                      />
-                      kl 21
-                    </label>
-                  )}
-
-                  <br />
-                  <br />
-                  <div>
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Namn"
-                      required
-                      minLength={2}
-                      value={booking?.customer.name}
-                      onChange={handleChange}
-                    />
-                    <br />
-                    <br />
-                    <input
-                      type="text"
-                      name="lastname"
-                      placeholder="Efternamn"
-                      required
-                      minLength={2}
-                      value={booking?.customer.lastname}
-                      onChange={handleChange}
-                    ></input>
-                    <br />
-                    <br />
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Mejl"
-                      required
-                      value={booking?.customer.email}
-                      onChange={handleChange}
-                    ></input>
-                    <br />
-                    <br />
-                    <input
-                      type="text"
-                      name="phone"
-                      placeholder="Mobil"
-                      minLength={10}
-                      required
-                      value={booking?.customer.phone}
-                      onChange={handleChange}
-                    ></input>
-
-                    <br />
-                    <br />
-                    <br />
-
-                    <label>
-                      {" "}
-                      Godkänner du att vi hanterar din persondata enligt GDPR?
-                      <input required type="checkbox" />
-                    </label>
-
-                    <br />
-                    <br />
-
-                    <button type="submit">Boka!</button>
-                  </div>
-                </form>
-              </section>
-            )}
+            <Link to="/">
+              {" "}
+              <button>Tillbaka till startsidan</button>
+            </Link>
           </div>
-          <br />
-          <h5>
-            Ring om ni önskar boka fler än 6 gäster på telefonnummer:{" "}
-            <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
-          </h5>
-        </div>
-      )}
+        )}
+
+        {!bookingComplete && (
+          <div>
+            <div className="bookingSearchContainer">
+              <h2>Sök önskad bokning</h2>
+
+              <form>
+                <label>
+                  {" "}
+                  Antal gäster:
+                  <br />
+                  <select onChange={(e) => changeSelects(e)}>
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                    <option value={4}>4</option>
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                  </select>
+                </label>
+
+                <br />
+                <br />
+
+                <label>
+                  Önskat datum:
+                  <br />
+                  <input
+                    type="date"
+                    className="datePicker"
+                    onChange={(e) => setRequestedDate(e.target.value)}
+                    min={new Date().toISOString().split("T")[0]}
+                  />
+                </label>
+
+                <br />
+                <br />
+              </form>
+
+              <br />
+
+              {showTime && (
+                <section>
+                  <h3>
+                    Den {requestedDate} finns dessa lediga bord för {selects}{" "}
+                    personer:{" "}
+                  </h3>
+                  <form onSubmit={newBooking}>
+                    {eveningDates.length >= 15 ? (
+                      <p>kl 18:00 - Fullbokat</p>
+                    ) : (
+                      <label>
+                        <input
+                          type="radio"
+                          id="18"
+                          value={requestedTime}
+                          name="radio"
+                          className="radioBtn"
+                          required
+                          onChange={() => setRequestedTime("18:00")}
+                        />
+                        kl 18
+                      </label>
+                    )}
+                    {nightDates.length >= 15 ? (
+                      <p>kl 21:00 - Fullbokat</p>
+                    ) : (
+                      <label>
+                        <input
+                          type="radio"
+                          id="21"
+                          value={requestedTime}
+                          name="radio"
+                          required
+                          onChange={() => setRequestedTime("21:00")}
+                        />
+                        kl 21
+                      </label>
+                    )}
+
+                    <br />
+                    <br />
+                    <div>
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder="Namn"
+                        required
+                        minLength={2}
+                        value={booking?.customer.name}
+                        onChange={handleChange}
+                      />
+                      <br />
+                      <br />
+                      <input
+                        type="text"
+                        name="lastname"
+                        placeholder="Efternamn"
+                        required
+                        minLength={2}
+                        value={booking?.customer.lastname}
+                        onChange={handleChange}
+                      ></input>
+                      <br />
+                      <br />
+                      <input
+                        type="email"
+                        name="email"
+                        placeholder="Mejl"
+                        required
+                        value={booking?.customer.email}
+                        onChange={handleChange}
+                      ></input>
+                      <br />
+                      <br />
+                      <input
+                        type="text"
+                        name="phone"
+                        placeholder="Mobil"
+                        minLength={10}
+                        required
+                        value={booking?.customer.phone}
+                        onChange={handleChange}
+                      ></input>
+
+                      <br />
+                      <br />
+                      <br />
+
+                      <label>
+                        {" "}
+                        Godkänner du att vi hanterar din persondata enligt GDPR?
+                        <input required type="checkbox" />
+                      </label>
+
+                      <br />
+                      <br />
+
+                      <button type="submit">Boka!</button>
+                      <h5>
+                        Ring om ni önskar boka fler än 6 gäster på
+                        telefonnummer:{" "}
+                        <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
+                      </h5>
+                    </div>
+                  </form>
+                </section>
+              )}
+            </div>
+            <br />
+          </div>
+        )}
       </div>
     </>
   );
