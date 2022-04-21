@@ -1,33 +1,62 @@
-import { useEffect, useState } from 'react';
-import { IReservation } from '../../models/IReservation';
-import { Reservation } from '../../models/Reservation';
-import { BookingService } from '../../services/BookingService';
-import './Admin.scss';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { ICustomer } from "../../models/ICustomer";
+import { IReservation } from "../../models/IReservation";
+import { BookingService } from "../../services/BookingService";
+import { Customer } from "../customer/Customer";
+import "./Admin.scss";
 
-export function Admin () {
-    
-    const [bookings, setBookings] = useState<IReservation[]>([]);
+export function Admin() {
+  let service = new BookingService();
+  const [bookings, setBookings] = useState<IReservation[]>([]);
+  const [idToRemove, setIdToRemove] = useState("");
+  const [customerDetails, setCustomerDetails] = useState<ICustomer>({
+    _id: "",
+    name: "",
+    lastname: "",
+    email: "",
+    phone: "",
+  });
 
-    console.log("bookings" + bookings)
-    useEffect(() => {
-        let service = new BookingService;
-        service.fetchBookings()
-        .then(fetchedBookings => setBookings(fetchedBookings));
-        console.log()
-    }, ([]));
+  const deleteBooking = async (idToRemove: any) => {
+    setIdToRemove(idToRemove);
+    const sendDelete = await axios.delete<IReservation>(
+      `https://school-restaurant-api.azurewebsites.net/booking/delete/${idToRemove}`
+    );
 
-    let bookingsHtml = bookings.map((b) => {
-        return <li key={b._id}>
-        <span>{b.customerId} </span>
-        <span>{b.date}</span>
-        <button>Remove</button>
-      </li>
-    }
-    )
+    await service
+      .fetchBookings()
+      .then((fetchedBookings) => setBookings(fetchedBookings));
+  };
 
+  useEffect(() => {
+    let service = new BookingService();
+    service
+      .fetchBookings()
+      .then((fetchedBookings) => setBookings(fetchedBookings));
+  }, []);
 
-    return(<>
-       <h1 className='adminHeader'>Admin works!</h1> 
-       <ul> {bookingsHtml}</ul>
-    </>)
+  let bookingsHtml = bookings.map((b) => {
+    return (
+      <div key={b._id} className="bookingCell">
+        <p>Bokningsdatum: {b.date} </p>
+        <p>Tid: {b.time}</p>
+        <p>Antal gäster: {b.numberOfGuests}</p>
+        <Customer customerId={b.customerId} />
+        <button onClick={(e) => deleteBooking(b._id)}>Ta bort bokning</button>
+        <br />
+        <br />
+        <hr />
+      </div>
+    );
+  });
+
+  return (
+    <>
+      <h1 className="adminHeader">Admin - Bokningar</h1>
+      <div className="bookingContiner">
+        <p>{bookingsHtml}</p>
+      </div>
+    </>
+  );
 }
