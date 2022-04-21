@@ -17,7 +17,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 4;
+  z-index: -4;
+  
   
 
   .header-links {
@@ -25,11 +26,16 @@
     letter-spacing: 2px;
     display: flex;
     flex-direction: column;
-    }
+    align-items: center;
+    
+  }
+    
 }
 .change {
   opacity: 1;
   width: 100%;
+  height: 100%;
+  z-index: 6;
 }
 
 .hamburger {
@@ -41,6 +47,7 @@
   cursor: pointer;
   text-align: center;
   z-index: 100;
+  
 
   &__icon {
     position: relative;

@@ -44,7 +44,7 @@ export function Nav() {
               Meny
             </Link>
             <Link to="/booking" onClick={closeMenu}>
-              Bokning
+              Boka bord
             </Link>
             <Link to="/contact" onClick={closeMenu}>
               Kontakta oss
