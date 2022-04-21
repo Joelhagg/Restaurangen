@@ -20,6 +20,7 @@ export function Main() {
             <Link to="/booking">
               <button className="mainBookingBtn">Boka bord</button>
             </Link>
+            
           </div>
         </div>
       </div>
