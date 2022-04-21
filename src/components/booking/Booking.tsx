@@ -172,15 +172,15 @@ export function Booking() {
 
               {showTime && (
                 <section>
-                  <h3 className="infoText">
+                  <h3>
                     Den {requestedDate} finns dessa lediga bord för {selects}{" "}
                     personer:{" "}
                   </h3>
                   <form onSubmit={newBooking}>
                     {eveningDates.length >= 15 ? (
-                      <p className="infoText">kl 18:00 - Fullbokat</p>
+                      <p>kl 18:00 - Fullbokat</p>
                     ) : (
-                      <label className="infoText">
+                      <label>
                         <input
                           type="radio"
                           id="18"
@@ -194,9 +194,9 @@ export function Booking() {
                       </label>
                     )}
                     {nightDates.length >= 15 ? (
-                      <p className="infoText">kl 21:00 - Fullbokat</p>
+                      <p>kl 21:00 - Fullbokat</p>
                     ) : (
-                      <label className="infoText">
+                      <label>
                         <input
                           type="radio"
                           id="21"
@@ -254,7 +254,7 @@ export function Booking() {
                       onChange={handleChange}
                     ></input>
                     <br />
-                    <label className="infoText">
+                    <label>
                       {" "}
                       Godkänner du att vi hanterar din persondata enligt GDPR?
                       <input required type="checkbox" className="checkbox" />
@@ -263,7 +263,7 @@ export function Booking() {
                     <button type="submit" className="submitBtn">
                       Boka!
                     </button>
-                    <h4 className="infoText">
+                    <h4>
                       Ring om ni önskar boka fler än 6 gäster på telefonnummer:{" "}
                       <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
                     </h4>

@@ -1,10 +1,10 @@
-.bookingWrapper {
-    background-image: url("../../image/bookingskog2.jpg");
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
+// .bookingWrapper {
+//     background-image: url("../../image/bookingskog2.jpg");
+//     height: 90vh;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     background-position: center;
+// }
 
 .bookingSearchContainer, .headerContainer {
     text-align: center;
@@ -15,7 +15,7 @@
 select {
     width: 40px;
     height: 30px;
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
     border: solid black 1px;
     border-radius: 5px;
     font-size: 15px;
@@ -23,7 +23,7 @@ select {
 }
 
 .datePicker {
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
     height: 30px;
     border-radius: 5px;
     border: solid black 1px;
@@ -34,13 +34,13 @@ select {
 .radioBtn {
     height: 18px;
     width: 18px;
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
 }
 
 .formInput {
     width: 200px;
     height: 30px;
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
     border: solid black 1px;
     border-radius: 5px;
     font-size: 15px;
@@ -50,7 +50,7 @@ select {
 .checkbox {
     width: 18px;
     height: 18px;
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
     border: solid black 1px;
     border-radius: 5px;
     font-size: 15px;
@@ -60,23 +60,19 @@ select {
 .submitBtn {
     width: 70px;
     height: 30px;
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(231, 231, 231);
     border: solid black 1px;
     border-radius: 5px;
     font-size: 15px;
     margin: 15px;
 }
 
-.infoText {
-    text-shadow: rgba(255, 255, 255, 0.5) 1px 1px 4px;
-}
-
 .orderConfirmation {
     text-align: center;
-    background-image: url("../../image/bookingskog2.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    // background-image: url("../../image/bookingskog2.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
 }
 
 
