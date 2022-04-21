@@ -40,7 +40,7 @@ select {
     stroke-dashoffset: 166;
     stroke-width: 2;
     stroke-miterlimit: 10;
-    stroke: #63472a;
+    stroke: #3f7421;
     fill: none;
     animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
 }
@@ -54,7 +54,7 @@ select {
     stroke: #fff;
     stroke-miterlimit: 10;
     margin: 2% auto;
-    box-shadow: inset 0px 0px 0px #c8c8c8;
+    box-shadow: inset 0px 0px 0px #279629;
     animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
 }
 
@@ -85,6 +85,6 @@ select {
 
 @keyframes fill {
     100% {
-        box-shadow: inset 0px 0px 0px 30px #717171
+        box-shadow: inset 0px 0px 0px 30px #47a219
     }
 }
