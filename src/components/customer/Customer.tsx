@@ -22,7 +22,11 @@ export function Customer({ customerId }: any) {
     initFetch();
   }, []);
   if (isLoading) {
-    return <div>Loading....</div>;
+    return (
+      <div>
+        <h3>Laddar....</h3>
+      </div>
+    );
   }
   return (
     <>

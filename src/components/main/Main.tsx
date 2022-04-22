@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import "./Main.scss";
 
 export function Main() {
-  let bgImg =
-    "https://kolarbyn.se/wp-content/uploads/2022/04/fallback-kolarbyn-socialmedia.jpg";
-
   return (
     <>
       <div className="mainWraper">
@@ -20,7 +17,6 @@ export function Main() {
             <Link to="/booking">
               <button className="mainBookingBtn">Boka bord</button>
             </Link>
-            
           </div>
         </div>
       </div>

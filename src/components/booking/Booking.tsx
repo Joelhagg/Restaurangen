@@ -39,7 +39,6 @@ export function Booking() {
     }
 
     let dateMatch = bookings.filter((match) => {
-      // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
     });
 
@@ -55,7 +54,6 @@ export function Booking() {
     setEveningsDates(eveningMatch);
   }, [selects, requestedDate]);
 
-  //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
     setNewCustomer({ ...newCustomer, [customer]: e.target.value });
