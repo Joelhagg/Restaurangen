@@ -47,6 +47,7 @@ export function Admin() {
         <br />
         <br />
         <hr />
+        <br />
       </div>
     );
   });
