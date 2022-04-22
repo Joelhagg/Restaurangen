@@ -39,7 +39,6 @@ export function Booking() {
     }
 
     let dateMatch = bookings.filter((match) => {
-      // Hämtar bokningar och filtrerar på valt datum
       return match.date === requestedDate;
     });
 
@@ -55,7 +54,6 @@ export function Booking() {
     setEveningsDates(eveningMatch);
   }, [selects, requestedDate]);
 
-  //   // Hanterar inmatad info om kunden
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     let customer: string = e.target.name;
     setNewCustomer({ ...newCustomer, [customer]: e.target.value });
@@ -132,8 +130,14 @@ export function Booking() {
           <div>
             <div className="bookingSearchContainer">
               <h2>Boka din upplevelse nu!</h2>
-              <p><em>I din bokning ingår middag vid vald tid och övernattning i någon av våra unika kojor! <br /> 
-              Varje koja rymmer upp till 6 personer. För större sällskap hänvisar vi till telefonbokning</em></p>
+              <p>
+                <em>
+                  I din bokning ingår middag vid vald tid och övernattning i
+                  någon av våra unika kojor! <br />
+                  Varje koja rymmer upp till 6 personer. För större sällskap
+                  hänvisar vi till telefonbokning
+                </em>
+              </p>
 
               <form>
                 <label>
@@ -151,7 +155,6 @@ export function Booking() {
                 </label>
 
                 <br />
-                <br />
 
                 <label>
                   Önskat datum:
@@ -163,12 +166,7 @@ export function Booking() {
                     min={new Date().toISOString().split("T")[0]}
                   />
                 </label>
-
-                <br />
-                <br />
               </form>
-
-              <br />
 
               {showTime && (
                 <section>
@@ -202,6 +200,7 @@ export function Booking() {
                           id="21"
                           value={requestedTime}
                           name="radio"
+                          className="radioBtn"
                           required
                           onChange={() => setRequestedTime("21:00")}
                         />
@@ -210,70 +209,62 @@ export function Booking() {
                     )}
 
                     <br />
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Namn"
+                      className="formInput"
+                      required
+                      minLength={2}
+                      value={booking?.customer.name}
+                      onChange={handleChange}
+                    />
                     <br />
-                    <div>
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder="Namn"
-                        required
-                        minLength={2}
-                        value={booking?.customer.name}
-                        onChange={handleChange}
-                      />
-                      <br />
-                      <br />
-                      <input
-                        type="text"
-                        name="lastname"
-                        placeholder="Efternamn"
-                        required
-                        minLength={2}
-                        value={booking?.customer.lastname}
-                        onChange={handleChange}
-                      ></input>
-                      <br />
-                      <br />
-                      <input
-                        type="email"
-                        name="email"
-                        placeholder="Mejl"
-                        required
-                        value={booking?.customer.email}
-                        onChange={handleChange}
-                      ></input>
-                      <br />
-                      <br />
-                      <input
-                        type="text"
-                        name="phone"
-                        placeholder="Mobil"
-                        minLength={10}
-                        required
-                        value={booking?.customer.phone}
-                        onChange={handleChange}
-                      ></input>
-
-                      <br />
-                      <br />
-                      <br />
-
-                      <label>
-                        {" "}
-                        Godkänner du att vi hanterar din persondata enligt GDPR?
-                        <input required type="checkbox" />
-                      </label>
-
-                      <br />
-                      <br />
-
-                      <button type="submit">Boka!</button>
-                      <h5>
-                        Ring om ni önskar boka fler än 6 gäster på
-                        telefonnummer:{" "}
-                        <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
-                      </h5>
-                    </div>
+                    <input
+                      type="text"
+                      name="lastname"
+                      placeholder="Efternamn"
+                      className="formInput"
+                      required
+                      minLength={2}
+                      value={booking?.customer.lastname}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Mejl"
+                      className="formInput"
+                      required
+                      value={booking?.customer.email}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <input
+                      type="text"
+                      name="phone"
+                      placeholder="Mobil"
+                      className="formInput"
+                      minLength={10}
+                      required
+                      value={booking?.customer.phone}
+                      onChange={handleChange}
+                    ></input>
+                    <br />
+                    <label>
+                      {" "}
+                      Godkänner du att vi hanterar din persondata enligt GDPR?
+                      <input required type="checkbox" className="checkbox" />
+                    </label>
+                    <br />
+                    <button type="submit" className="submitBtn">
+                      Boka!
+                    </button>
+                    <h4>
+                      Ring om ni önskar boka fler än 6 gäster på telefonnummer:{" "}
+                      <a href="tel:+08-740 00 01">08-740 00 01</a>{" "}
+                    </h4>
                   </form>
                 </section>
               )}

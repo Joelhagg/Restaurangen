@@ -1,9 +1,10 @@
-import React from 'react';
-import './NotFound.scss';
+import React from "react";
+import "./NotFound.scss";
 
 export function NotFound() {
-    return (<>
-        <h1>NotFound Works!</h1>
-
-    </>)
+  return (
+    <>
+      <h1 className="notFound">404!!! Pröva en annan url</h1>
+    </>
+  );
 }
