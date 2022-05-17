@@ -1,7 +1,7 @@
 
 # [Länk till Majojo:s Restaurangsida](https://idyllic-cucurucho-f4089c.netlify.app/)
 
-Restaurangsidan med bokningsfunktion byggd i React av Mats Jonas och Joel
+Restaurangsidan med bokningsfunktion byggd i React av Mats Jonas och Joel 😄
 
 <br />
 
@@ -13,7 +13,11 @@ $ npm install sass
 
 Restauratnt-id 624edd698da20f7ae72e1559
 
+<br />
+
 <hr>
+
+<br />
 
 # Getting Started with Create React App
 
