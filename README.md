@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-
+# [Majojo:s Restaurangsida](https://idyllic-cucurucho-f4089c.netlify.app/)
 
 # Packs to install
 
