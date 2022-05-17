@@ -5,9 +5,9 @@ Restaurangsidan med bokningsfunktion byggd i React av Mats Jonas och Joel 😄
 
 <br />
 
+<hr>
 
-
-# Packs to install
+ Packs to install
 
 $ npm install sass
 
