@@ -1,16 +1,23 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # [Länk till Majojo:s Restaurangsida](https://idyllic-cucurucho-f4089c.netlify.app/)
+
+Restaurangsidan med bokningsfunktion byggd i React av Mats Jonas och Joel
+
+<br />
+
+
 
 # Packs to install
 
 $ npm install sass
 
-
-
 Restauratnt-id 624edd698da20f7ae72e1559
+
+<hr>
+
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
